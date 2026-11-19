@@ -48,3 +48,20 @@ Negative financial values exist across multiple financial columns. They will be 
 
 - Reversed timestamps: 3 records.
 - Zero-duration trips: 43,182 records.
+
+
+### Trip Distance Quality Rules
+
+- Negative trip distances are invalid and quarantined.
+- Zero-distance trips are retained with a quality flag.
+- Distances above 100 miles are flagged as suspicious.
+- Distances above 1,000 miles are quarantined from
+  the valid Silver dataset pending investigation.
+- Original values are preserved in Bronze.
+
+### Profiling Findings
+
+- 135 records have trip_distance > 100 miles.
+- 40 records have trip_distance > 1,000 miles.
+- All 40 extreme-distance records belong to VendorID 2.
+- 39 of the 40 records have payment_type = 0.
