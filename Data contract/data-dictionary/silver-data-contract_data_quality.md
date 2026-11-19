@@ -65,3 +65,45 @@ Negative financial values exist across multiple financial columns. They will be 
 - 40 records have trip_distance > 1,000 miles.
 - All 40 extreme-distance records belong to VendorID 2.
 - 39 of the 40 records have payment_type = 0.
+
+
+- 119,059 records have zero trip distance (approximately 3.57%).
+- No NULL or negative trip distances were found.
+
+### Financial Quality Findings
+
+- 3,200 records have zero fare.
+- 1,334 records have zero total amount.
+- 14,049 records have negative fare.
+- 14,493 records have negative total amount.
+- congestion_surcharge and Airport_fee each contain
+  921,181 NULL records.
+- Negative financial values are concentrated in
+  payment types 3 and 4.
+
+### Financial Quality Rules
+
+- Preserve original financial values.
+- Retain zero and negative financial records.
+- Add flags for zero and negative fare/total values.
+- Preserve NULL optional surcharge values.
+- Do not replace NULL values with zero.
+- Do not quarantine records based on financial values alone.
+
+
+### Duplicate Handling Rules
+
+- Exact duplicate records across all source columns
+  are deduplicated in the Silver layer.
+- Only one copy of each exact record is retained.
+- Potential duplicates based on partial column matching
+  are preserved.
+- Bronze source data remains unchanged.
+
+### Duplicate Profiling Findings
+
+- 7 exact duplicate groups were identified.
+- Each group contains exactly 2 identical records.
+- 7 extra rows will be removed during Silver processing.
+- 19,245 potential duplicate groups were identified
+  using a subset of columns and will be preserved.
