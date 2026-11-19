@@ -34,3 +34,17 @@ Negative financial values exist across multiple financial columns. They will be 
 - Add data quality flags where appropriate.
 
 *Note: These are preliminary profiling findings, not a finalized source-wide business validation policy.*
+
+### Timestamp Quality Rules
+
+- Records where dropoff_datetime < pickup_datetime
+  are excluded from the Silver valid dataset.
+- These records are preserved in a separate quarantine dataset.
+- Records where dropoff_datetime == pickup_datetime
+  are retained but flagged as zero-duration trips.
+- No original Bronze records are deleted or modified.
+
+### Current Profiling Results
+
+- Reversed timestamps: 3 records.
+- Zero-duration trips: 43,182 records.
