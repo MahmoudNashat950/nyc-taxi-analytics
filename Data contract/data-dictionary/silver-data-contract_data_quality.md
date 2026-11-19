@@ -52,11 +52,11 @@ Negative financial values exist across multiple financial columns. They will be 
 
 ### Trip Distance Quality Rules
 
-- Negative trip distances are invalid and quarantined.
+- Negative trip distances are invalid and should be quarantined if encountered.
 - Zero-distance trips are retained with a quality flag.
 - Distances above 100 miles are flagged as suspicious.
-- Distances above 1,000 miles are quarantined from
-  the valid Silver dataset pending investigation.
+- Distances above 1,000 miles are marked as quarantine candidates
+  pending final validation.
 - Original values are preserved in Bronze.
 
 ### Profiling Findings
